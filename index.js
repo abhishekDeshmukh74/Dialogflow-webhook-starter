@@ -15,7 +15,7 @@ restService.use(bodyParser.json());
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     speech = speech+" location Details"
-    
+
     var options = {
         url: 'https://rezility-dev.herokuapp.com/api/getnearbyproperties',
         method: 'POST',
@@ -47,18 +47,20 @@ restService.post('/echo', function(req, res) {
     }
 
     request(options, function(error, response, body){
-    if(!error && response.statusCode == 200) {
-        return res.json({
-        speech: response.body.message,
-        displayText: response.body.message,
-        source: 'webhook-echo-sample'
-    });     
-    } else {
-        return res.json({
-            speech: response.body.message,
-            displayText: response.body.message,
-            source: 'webhook-echo-sample'
-    }
+        if(!error && response.statusCode == 200) {
+            return res.json({
+                speech: response.body.message,
+                displayText: response.body.message,
+                source: 'webhook-echo-sample'
+            });     
+        } else {
+            return res.json({
+                speech: response.body.message,
+                displayText: response.body.message,
+                source: 'webhook-echo-sample'
+            });
+        }
+    });
 });
 
 restService.listen((process.env.PORT || 8000), function() {
