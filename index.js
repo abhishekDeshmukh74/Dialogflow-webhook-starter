@@ -48,7 +48,7 @@ restService.post('/echo', function(req, res) {
 
     request(options, function(error, response, body){
         if(!error && response.statusCode == 200) {
-            console.log("in if");
+            console.log(response.body.message);
             return res.json({
                 speech: response.body.message,
                 displayText: response.body.message,
