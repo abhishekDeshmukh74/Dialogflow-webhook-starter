@@ -49,7 +49,7 @@ restService.post('/echo', function(req, res) {
     request(options, function(error, response, body){
         if(!error && response.statusCode == 200) {
 		var serviceData = JSON.parse(body);
-		var speech = servicedata.service_providers[0].public_name+" is available at address "+servicedata.service_providers[0].street_address1;
+		var speech = serviceData.service_providers[0].public_name+" is available at address "+serviceData.service_providers[0].street_address1;
           	return res.json({
                 speech: speech,
                 displayText: speech,
