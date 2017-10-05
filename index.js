@@ -48,10 +48,11 @@ restService.post('/echo', function(req, res) {
 
     request(options, function(error, response, body){
         if(!error && response.statusCode == 200) {
-            console.log(response.body.message);
+            var serviceData = JSON.parse(body);
+	        console.log(serviceData.message+"LOL"); 
             return res.json({
-                speech: response.body.message,
-                displayText: response.body.message,
+                speech: serviceData.message,
+                displayText: serviceData.message,
                 source: 'webhook-echo-sample'
             });     
         } else {
