@@ -49,16 +49,13 @@ restService.post('/echo', function(req, res) {
     request(options, function(error, response, body){
         if(!error && response.statusCode == 200) {
             return res.json({
+                console.log("in if");
                 speech: response.body.message,
                 displayText: response.body.message,
                 source: 'webhook-echo-sample'
             });     
         } else {
-            return res.json({
-                speech: response.body.message,
-                displayText: response.body.message,
-                source: 'webhook-echo-sample'
-            });
+            console.log("in else");
         }
     });
 });
