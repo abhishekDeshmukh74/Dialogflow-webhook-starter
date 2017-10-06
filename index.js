@@ -16,8 +16,7 @@ restService.post('/echo', function(req, res) {
    // var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
    // speech = speech+" location Details"
 	
-	var lol = JSON.parse(req);	
-	console.log(lol);
+	console.log(req.body.result);
 	
     var options = {
         url: 'https://rezility-dev.herokuapp.com/api/getnearbyproperties',
