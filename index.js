@@ -17,7 +17,7 @@ restService.post('/', function(req, res) {
     // speech = speech+" location Details"
 
 
-    var temp = req.body.action;
+    var temp = req.body.result.action;
     console.log(req.body);
     console.log(temp);
     restService.post('/temp',function(req,res){
