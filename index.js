@@ -21,6 +21,7 @@ restService.post('/', function(req, res) {
     console.log(temp);
 
     if(temp!=undefined){
+        console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
         restService.post('/temp',function(req,res){
             var options = {
