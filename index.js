@@ -18,10 +18,10 @@ restService.post('/', function(req, res) {
 
     var temp = req.body.result.action;
     console.log(req.body);
-    console.log(temp);
-
+    
     if(temp!=undefined){
         console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
+        console.log(temp);
 
         restService.post('/temp',function(req,res){
             console.log("success");
