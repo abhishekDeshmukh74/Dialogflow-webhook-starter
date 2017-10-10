@@ -18,6 +18,7 @@ restService.post('/', function(req, res) {
 
 
     var temp = req.body.action;
+    console.log(req.body);
     console.log(temp);
     restService.post('/temp',function(req,res){
         var options = {
