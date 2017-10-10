@@ -24,6 +24,7 @@ restService.post('/', function(req, res) {
         console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
         restService.post('/temp',function(req,res){
+            console.log("success");
             var options = {
                 url: 'https://rezility-dev.herokuapp.com/api/rezpolls/getfeeds',
                 method: 'POST',
