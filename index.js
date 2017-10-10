@@ -16,14 +16,14 @@ restService.post('/', function(req, res) {
     // var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     // speech = speech+" location Details"
 
-    var temp = req.body.result.action;
+    var temp = '/'+req.body.result.action;
     console.log(req.body);
     
     if(temp!=undefined){
         console.log("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
         console.log(temp);
 
-        restService.post('/'+temp,function(req,res){
+        restService.post(temp,function(req,res){
             console.log("success");
             var options = {
                 url: 'https://rezility-dev.herokuapp.com/api/rezpolls/getfeeds',
