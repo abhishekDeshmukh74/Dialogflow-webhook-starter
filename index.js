@@ -16,7 +16,7 @@ restService.post('/', function(req, res) {
     // var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     // speech = speech+" location Details"
 
-    var temp = '/'+req.body.result.action;
+    var temp = req.body.result.action;
     console.log(req.body);
 
     if(temp!=undefined){
@@ -25,7 +25,7 @@ restService.post('/', function(req, res) {
 
         if(temp=="rezpolls/getfeeds"){
             //restService.post(temp,function(req,res){
-            console.log("success");
+            console.log("success1");
             var options = {
                 url: 'https://rezility-dev.herokuapp.com/api/rezpolls/getfeeds',
                 method: 'POST',
@@ -66,6 +66,7 @@ restService.post('/', function(req, res) {
         }
 
         if(temp=="getnearbyproperties"){
+            console.log("success2");
             var options = {
                 url: 'https://rezility-dev.herokuapp.com/api/getnearbyproperties',
                 method: 'POST',
