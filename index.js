@@ -12,14 +12,18 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
-restService.post('/', function(req, res) {
+restService.post('/', function(req, res, err) {
     // var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     // speech = speech+" location Details"
 
-
+    if(!err && response.statusCode == 200) {
+    
     var temp = req.body.result.action;
     console.log(req.body);
     console.log("LOL"+temp);
+    }
+    
+
     restService.post('/temp',function(req,res){
         var options = {
             url: 'https://rezility-dev.herokuapp.com/api/rezpolls/getfeeds',
