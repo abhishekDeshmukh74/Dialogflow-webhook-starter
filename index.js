@@ -18,8 +18,8 @@ restService.post('/', function(req, res) {
     var tokenAnduserid = req.body.originalRequest.data.user.accessToken;
     console.log(tokenAnduserid);
     var resultArray = tokenAnduserid.split('-');
-    authorizationToken = resultArray[0]
-    userId = resultArray[1]
+    var authorizationToken = resultArray[0]
+    var userId = resultArray[1]
     console.log(authorizationToken)
     console.log(userId)
     var temp = req.body.result.action;
