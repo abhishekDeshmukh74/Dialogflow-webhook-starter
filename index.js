@@ -101,40 +101,41 @@ restService.post('/', function(req, res) {
             }
 
             request(options, function(error, response, body){
-                if(!error && response.statusCode == 200) {
-                    var responseSpeech = ''
-                    var result = JSON.parse(body);
-                    console.log(result)
-                    if (result.feeds.length > 3 && result.feeds.length != 0) {
+                                if (result.status == "SUCCESS") {
+                    if (result.service_providers) {
 
-                        var totalfeeds = result.feeds
-                        responseSpeech = ' I could find ' + totalfeeds.length + ' feeds. Here are the top 3: '
-                        responseSpeech += '1. ' + totalfeeds[0].title + ', '
-                        responseSpeech += '2. ' + totalfeeds[1].title + ', '
-                        responseSpeech += '3. ' + totalfeeds[2].title + '. '
-
-                    } else {
-                        var totalfeeds = result.feeds
-                        responseSpeech = ' I could find ' + totalfeeds.length + 'feeds. '
-
-                        for (var i = 0; i < totalfeeds.length - 1; i++) {
-                            var currentfeed = totalfeeds[i]
-                            if (i = totalfeeds.length - 1) {
-                                responseSpeech += i + '. ' + totalfeeds[i].title + '. '
+                        var totalServiceProviders = result.service_providers
+                        responseSpeech = 'The ' + totalServiceProviders.length + ' service providers I could find near you are: '
+                        for (var i = 0; i < totalServiceProviders.length; i++) {
+                            var serviceProvider = totalServiceProviders[i]
+                            if (i == totalServiceProviders.length - 1) {
+                                responseSpeech += serviceProvider.public_name + "."
                             } else {
-                                responseSpeech += i + '. ' + totalfeeds[i].title + ', '
+                                responseSpeech += serviceProvider.public_name + ", "
                             }
 
                         }
                     }
-                    console.log('In feeds Response ' + responseSpeech)
-                    return res.json({
-                        speech: speech,
-                        displayText: speech,
-                        source: 'webhook-echo-sample'
-                    });     
+                    if (result.housing_providers) {
+                        var totalhousingProviders = result.housing_providers
+                        responseSpeech += ' The ' + totalhousingProviders.length + ' housing providers I could find near you are: '
+                        for (var i = 0; i < totalhousingProviders.length; i++) {
+                            var housingProvider = totalhousingProviders[i]
+                            if (i == totalhousingProviders.length - 1) {
+                                responseSpeech += housingProvider.public_name + "."
+                            } else {
+                                responseSpeech += housingProvider.public_name + ", "
+                            }
+
+                        }
+                    }
+                    console.log('In Get nearby Properties Response ' + responseSpeech)
+                    that.response.speak(responseSpeech).cardRenderer('Rezility', responseSpeech, cardImageObject)
+                    that.emit(':responseReady')
                 } else {
-                    console.log("in else");
+                    responseSpeech = 'Sorry, I couldn’t find any service or housing providers near you.'
+                    that.response.speak(responseSpeech).cardRenderer('Rezility', responseSpeech, cardImageObject)
+                    that.emit(':responseReady')
                 }
             });
 
