@@ -102,8 +102,31 @@ restService.post('/', function(req, res) {
 
             request(options, function(error, response, body){
                 if(!error && response.statusCode == 200) {
-                    var serviceData = JSON.parse(body);
-                    var speech = serviceData.service_providers[0].public_name+" is available at address "+serviceData.service_providers[0].street_address1;
+                    var responseSpeech = ''
+                    var result = JSON.parse(body);
+                    if (result.feeds.length > 3 && result.feeds.length != 0) {
+
+                        var totalfeeds = result.feeds
+                        responseSpeech = ' I could find ' + totalfeeds.length + ' feeds. Here are the top 3: '
+                        responseSpeech += '1. ' + totalfeeds[0].title + ', '
+                        responseSpeech += '2. ' + totalfeeds[1].title + ', '
+                        responseSpeech += '3. ' + totalfeeds[2].title + '. '
+
+                    } else {
+                        var totalfeeds = result.feeds
+                        responseSpeech = ' I could find ' + totalfeeds.length + 'feeds. '
+
+                        for (var i = 0; i < totalfeeds.length - 1; i++) {
+                            var currentfeed = totalfeeds[i]
+                            if (i = totalfeeds.length - 1) {
+                                responseSpeech += i + '. ' + totalfeeds[i].title + '. '
+                            } else {
+                                responseSpeech += i + '. ' + totalfeeds[i].title + ', '
+                            }
+
+                        }
+                    }
+                    console.log('In feeds Response ' + responseSpeech)
                     return res.json({
                         speech: speech,
                         displayText: speech,
