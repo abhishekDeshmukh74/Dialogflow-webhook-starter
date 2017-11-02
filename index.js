@@ -15,7 +15,12 @@ restService.use(bodyParser.json());
 restService.post('/', function(req, res) {
     // var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
     // speech = speech+" location Details"
-    console.log(req.body.originalRequest.data);            
+    console.log(req.body.originalRequest.data.accessToken);
+    var resultArray = tokenAnduserid.split('-');
+    authorizationToken = resultArray[0]
+    userId = resultArray[1]
+    console.log(authorizationToken)
+    console.log(userId)
     var temp = req.body.result.action;
 
     if(temp!=undefined){
