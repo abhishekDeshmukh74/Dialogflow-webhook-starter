@@ -126,6 +126,8 @@ restService.post('/', function(req, res) {
             }
 
             request(options, function(error, response, body){
+                                var result = JSON.parse(body)
+var responseSpeech = ''
                                 if (result.status == "SUCCESS") {
                     if (result.service_providers) {
 
