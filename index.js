@@ -104,6 +104,7 @@ restService.post('/', function(req, res) {
                 if(!error && response.statusCode == 200) {
                     var responseSpeech = ''
                     var result = JSON.parse(body);
+                    console.log(result)
                     if (result.feeds.length > 3 && result.feeds.length != 0) {
 
                         var totalfeeds = result.feeds
