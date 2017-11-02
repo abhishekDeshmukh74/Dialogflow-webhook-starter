@@ -53,16 +53,16 @@ restService.post('/', function(req, res) {
                 if (!error) {
                 var result = JSON.parse(body)
                 var responseSpeech = ''
+                                if (!error) {
 
-                if (result.status == "SUCCESS") {
-
+                    var responseSpeech = '';
                     if (result.feeds.length > 3 && result.feeds.length != 0) {
 
                         var totalfeeds = result.feeds
-                        responseSpeech = 'I could find ' + totalfeeds.length + ' feeds. Here are the top 3: '
+                        responseSpeech = ' I could find ' + totalfeeds.length + ' feeds. Here are the top 3: '
                         responseSpeech += '1. ' + totalfeeds[0].title + ', '
                         responseSpeech += '2. ' + totalfeeds[1].title + ', '
-                        responseSpeech += '3. ' + totalfeeds[2].title + '.'
+                        responseSpeech += '3. ' + totalfeeds[2].title + '. '
 
                     } else {
                         var totalfeeds = result.feeds
@@ -75,17 +75,17 @@ restService.post('/', function(req, res) {
                             } else {
                                 responseSpeech += i + '. ' + totalfeeds[i].title + ', '
                             }
+
                         }
                     }
                     console.log('In feeds Response ' + responseSpeech)
-                    that.response.speak(responseSpeech).cardRenderer('Rezility', responseSpeech, cardImageObject)
-                    that.emit(':responseReady')
-                } else {
-                    responseSpeech = 'Sorry, Currently no feeds are available'
-                    that.response.speak(responseSpeech).cardRenderer('Rezility', responseSpeech, cardImageObject)
-                    that.emit(':responseReady')
+
+                    return res.json({
+                        speech: responseSpeech,
+                        displayText: responseSpeech,
+                        source: 'webhook-echo-sample'
+                    });
                 }
-            }
 
             });	
 
@@ -126,17 +126,17 @@ restService.post('/', function(req, res) {
             }
 
             request(options, function(error, response, body){
-                                var result = JSON.parse(body)
-var responseSpeech = ''
-                                if (result.status == "SUCCESS") {
+                var result = JSON.parse(body)
+                var responseSpeech = ''
+                                if (!error) {
+                    var responseSpeech = ''
                     if (result.service_providers) {
-
                         var totalServiceProviders = result.service_providers
-                        responseSpeech = 'The ' + totalServiceProviders.length + ' service providers I could find near you are: '
+                        responseSpeech = ' The ' + totalServiceProviders.length + ' service providers I could find near you are: '
                         for (var i = 0; i < totalServiceProviders.length; i++) {
                             var serviceProvider = totalServiceProviders[i]
                             if (i == totalServiceProviders.length - 1) {
-                                responseSpeech += serviceProvider.public_name + "."
+                                responseSpeech += serviceProvider.public_name + ". "
                             } else {
                                 responseSpeech += serviceProvider.public_name + ", "
                             }
@@ -149,7 +149,7 @@ var responseSpeech = ''
                         for (var i = 0; i < totalhousingProviders.length; i++) {
                             var housingProvider = totalhousingProviders[i]
                             if (i == totalhousingProviders.length - 1) {
-                                responseSpeech += housingProvider.public_name + "."
+                                responseSpeech += housingProvider.public_name + ". "
                             } else {
                                 responseSpeech += housingProvider.public_name + ", "
                             }
@@ -157,13 +157,14 @@ var responseSpeech = ''
                         }
                     }
                     console.log('In Get nearby Properties Response ' + responseSpeech)
-                    that.response.speak(responseSpeech).cardRenderer('Rezility', responseSpeech, cardImageObject)
-                    that.emit(':responseReady')
-                } else {
-                    responseSpeech = 'Sorry, I couldn’t find any service or housing providers near you.'
-                    that.response.speak(responseSpeech).cardRenderer('Rezility', responseSpeech, cardImageObject)
-                    that.emit(':responseReady')
+
+                    return res.json({
+                        speech: responseSpeech,
+                        displayText: responseSpeech,
+                        source: 'Extentia.Rezility'
+                    })
                 }
+
             });
 
         }
