@@ -34,19 +34,19 @@ restService.post('/', function(req, res) {
                 url: 'https://rezility-dev.herokuapp.com/api/rezpolls/getfeeds',
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTkwYjNiNTUxM2Y3ZmZmMjBlZjc3MmI5IiwidXNlcl9lbWFpbCI6ImFkbWluQHJlemlsaXR5LmNvbSIsImlhdCI6MTQ5MzkwODcxNH0.AL1H4v5_YJJ3fFs9wjjbp64fFt2Vy9U2j8QMlZ5Vhlo',
+                    'Authorization': 'Bearer '+authorizationToken,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     "per_page": 100,
                     "page_number": 1,
-                    "feed_owner_id": "590b3b5513f7fff20ef772b9",
+                    "feed_owner_id": userId,
                     "branch_id": "59312f2e9fe7879361f20eea",
                     "app_id": "22062016",
                     "app_version": "1.3.0",
                     "device_id": "web-dev-admin1",
                     "device_type": "web",
-                    "sys_user_id": "590b3b5513f7fff20ef772b9"
+                    "sys_user_id": userId
                 })
             }
 
@@ -75,11 +75,11 @@ restService.post('/', function(req, res) {
                 url: 'https://rezility-dev.herokuapp.com/api/getnearbyproperties',
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTlhZmM1OTJmYTIyNjcwMDExYmMyY2I4IiwidXNlcl9lbWFpbCI6InNoZWhuaWxhQG1haWxpbmF0b3IuY29uIiwiaWF0IjoxNTA0NjkxNjAyfQ.KLH0fuaNWFVOAvJA9shjONcsMr68Pwhp35Z78tboEho',
+                    'Authorization': 'Bearer '+authorizationToken,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "user_id": "59afc592fa22670011bc2cb8",
+                    "user_id": userId,
                     "latitude": 18.548056,
                     "longitude": 73.9004693,
                     "is_housing_property_needed": true,
@@ -97,7 +97,7 @@ restService.post('/', function(req, res) {
                     "app_version": "1.2.0",
                     "device_id": "web-dev1",
                     "device_type": "android",
-                    "sys_user_id": "59afc592fa22670011bc2cb8"
+                    "sys_user_id": userId
                 })
             }
 
