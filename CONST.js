@@ -3,7 +3,7 @@ const ENV = require('./env/' + env + '.json');
 
 module.exports.CONST = {
     PORT_VALUE: ENV.PORT_VALUE,
-    DASHBOT_API_KEY: '***************************',
+    DASHBOT_API_KEY: '8HRjn8fGUSSPTqxJUNAd0AfE0CFHZ4Upf7sXqrD5',
     SERVER_START_TEXT: 'App is running on port %d in %s mode',
     ACCESS_CONTROL_HEADERS: {
         ALLOW_ORIGIN: {

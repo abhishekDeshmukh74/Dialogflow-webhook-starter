@@ -1,15 +1,17 @@
 {
-  "name": "webhook-echo-sample",
+  "name": "webhook-starter",
   "version": "1.0.0",
-  "description": "Webhook echo sample",
+  "description": "Description",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "logs": "heroku logs -t --app dialowflow-hook",
+    "push": "git add . && git commit -am 'lol' && git push heroku master"
   },
-  "author": "Sunil Syal",
+  "author": "Abhishek",
   "dependencies": {
     "body-parser": "^1.15.0",
-    "express": "^4.13.4",
-    "request": "^2.83.0"
+    "dashbot": "^9.9.2",
+    "express": "^4.13.4"
   }
 }
